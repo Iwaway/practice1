@@ -1,22 +1,35 @@
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-import java.nio.BufferOverflowException;
-import java.nio.ByteBuffer;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class AppTest {
-    String expected1 = "Hello World";
-
 
     @Test
-    public void test1() {
-
+    public void test(){
+        AppTest t = new AppTest();
+        assertDoesNotThrow(() ->t.testMyNetwork());
     }
 
     @Test
-    public void test2() {
+    public  void testMyNetwork() throws InterruptedException {
+        Receiver rec = new Receiver();
+        for (int i = 0; i < 5; i++) {
+            rec.receiveMessage();
+        }
 
+        Decriptor dec1 = new Decriptor();
+        Decriptor dec2 = new Decriptor();
+        dec1.start();
+        dec2.start();
+
+        Processor p1 = new Processor();
+        Processor p2 = new Processor();
+        p1.start();
+        p2.start();
+
+        Sender s1 = new Sender();
+        Sender s2 = new Sender();
+        s1.start();
+        s2.start();
     }
-
 }
