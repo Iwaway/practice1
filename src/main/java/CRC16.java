@@ -36,7 +36,7 @@ public class CRC16 {
             0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040,
     };
 
-    public static int countCRC16(byte[] bytes){
+    public static int getCRC(byte[] bytes){
         int crc = 0x0000;
         for (byte b : bytes) {
             crc = (crc >>> 8) ^ table[(crc ^ b) & 0xff];

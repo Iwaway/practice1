@@ -1,35 +1,28 @@
 import org.junit.Test;
+import java.security.NoSuchAlgorithmException;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+/**
+ * Unit test for simple App.
+ */
 
 public class AppTest {
-
     @Test
-    public void test(){
-        AppTest t = new AppTest();
-        assertDoesNotThrow(() ->t.testMyNetwork());
+        public void testConnectionUPD(){
+        String host = "localhost";
+        int port = 2000;
+
+        new StoreServerUDP();
+        new StoreClientUDP(host, port);
     }
 
     @Test
-    public  void testMyNetwork() throws InterruptedException {
-        Receiver rec = new Receiver();
-        for (int i = 0; i < 5; i++) {
-            rec.receiveMessage();
-        }
+    public void testConnectionTCP(){
+        String host = "localhost";
+        int port = 1999;
 
-        Decriptor dec1 = new Decriptor();
-        Decriptor dec2 = new Decriptor();
-        dec1.start();
-        dec2.start();
-
-        Processor p1 = new Processor();
-        Processor p2 = new Processor();
-        p1.start();
-        p2.start();
-
-        Sender s1 = new Sender();
-        Sender s2 = new Sender();
-        s1.start();
-        s2.start();
+        new StoreServerTCP();
+        new StoreClientTCP(host, port);
     }
 }
+
